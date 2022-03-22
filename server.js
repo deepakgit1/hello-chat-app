@@ -14,9 +14,9 @@ const app = express()
 
 app.use(express.json()); // TO ACCEPT JSON DATA
 
-app.get("/", (req, res) => {
-    res.send("Api is running")
-})
+// app.get("/", (req, res) => {
+//     res.send("Api is running")
+// })
 
 app.use('/api/user', userRoutes)
 app.use('/api/chat', chatRoutes)
