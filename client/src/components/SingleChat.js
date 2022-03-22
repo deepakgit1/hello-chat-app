@@ -12,7 +12,7 @@ import io from "socket.io-client";
 import Lottie from "lottie-react";
 import animationData from "../animations/typing.json";
 
-const ENDPOINT  = "http://localhost:5000";
+const ENDPOINT  = "https://hello-chat-app-new.herokuapp.com/"
 
 let socket,selectedChatCompare;
 
