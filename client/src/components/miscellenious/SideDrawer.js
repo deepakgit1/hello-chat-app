@@ -31,7 +31,7 @@ const SideDrawer = () => {
         localStorage.removeItem("userInfo");
         history.push("/");
     }
-
+    
     const handleSearch = async () => {
         if (!search) {
             toast({
@@ -55,8 +55,8 @@ const SideDrawer = () => {
 
             const { data } = await axios.get(`/api/user?search=${search}`, config);
 
-            setLoading(false);
             setSearchResult(data);
+            setLoading(false);
         } catch (error) {
             toast({
                 title: "Error Occured!",
@@ -70,29 +70,33 @@ const SideDrawer = () => {
     };
 
     const accessChat = async (userId) => {
+        console.log(userId);
+    
         try {
-            setLoadingChat(true)
-            const config = {
-                headers: {
-                    "Content-type": "application/json",
-                    Authorization: `Bearer ${user.token}`,
-                },
-            };
-            const { data } = await axios.post('/api/chat', { userId }, config)
-            setSelectedChat(data);
-            setLoadingChat(false);
-            onClose();
+          setLoadingChat(true);
+          const config = {
+            headers: {
+              "Content-type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          };
+          const { data } = await axios.post(`/api/chat`, { userId }, config);
+    
+          if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+          setSelectedChat(data);
+          setLoadingChat(false);
+          onClose();
         } catch (error) {
-            toast({
-                title: "Error fetching the chat",
-                description: error.message,
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-                position: "bottom-left",
-            });
+          toast({
+            title: "Error fetching the chat",
+            description: error.message,
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom-left",
+          });
         }
-    }
+      };
 
     return (
         <>
@@ -138,7 +142,7 @@ const SideDrawer = () => {
                     </Menu>
                     <Menu>
                         <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                            <Avatar size={"sm"} cursor="pointer" />
+                            <Avatar size={"sm"} cursor="pointer" src={user.pic} />  
                         </MenuButton>
                         <MenuList>
                             <ProfileModal user={user}>

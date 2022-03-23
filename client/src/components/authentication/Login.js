@@ -15,6 +15,7 @@ const Login = () => {
 
 
     const handleClick = () => setShow(!show)
+    
     const submitHandler = async() => {
         setLoading(true);
         if (!email || !password) {
@@ -51,10 +52,9 @@ const Login = () => {
                 isClosable: true,
                 position: "bottom",
             });
-            console.log("hey there");
-            window.location.reload(); 
             localStorage.setItem("userInfo", JSON.stringify(data));
             setLoading(false);
+            window.location.reload(); 
             history.push("/chats");
         } catch (error) {
             toast({
