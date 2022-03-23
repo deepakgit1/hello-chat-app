@@ -1,5 +1,5 @@
 import { AddIcon } from '@chakra-ui/icons';
-import { Box, Button, Stack, Text, useToast } from '@chakra-ui/react'
+import { Avatar, Box, Button, Stack, Text, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { getSender } from '../config/ChatLogic';
@@ -7,9 +7,9 @@ import { ChatState } from '../context/ChatProvider'
 import ChatLoading from './ChatLoading';
 import GroupChatModal from './miscellenious/GroupChatModal';
 
-const MyChats = ({fetchAgain}) => {
-  const [loggedUser,setLoggedUser] = useState()
-  const {selectedChat,setSelectedChat,user, chats,setChats} = ChatState()
+const MyChats = ({ fetchAgain }) => {
+  const [loggedUser, setLoggedUser] = useState()
+  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState()
   const toast = useToast()
 
   const fetchChats = async () => {
@@ -45,55 +45,56 @@ const MyChats = ({fetchAgain}) => {
   // console.log(chats);
   return (
     <Box
-    d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
-    flexDir="column"
-    alignItems="center"
-    p={3}
-    bg="white"
-    w={{ base: "100%", md: "31%" }}
-    borderRadius="lg"
-    borderWidth="1px"
-    background={"#0d0d30"}
+      d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+      flexDir="column"
+      alignItems="center"
+      p={3}
+      bg="white"
+      w={{ base: "100%", md: "31%" }}
+      borderRadius="lg"
+      borderWidth="1px"
+      background={"#0d0d30"}
     >
-      <Box 
-       pb={3}
-       px={3}
-       fontSize={{ base: "28px", md: "30px" }}
-       fontFamily="Josefin Sans"
-       d="flex"
-       w="100%"
-       justifyContent="space-between"
-       alignItems="center"
-       color="#fff"
+      <Box
+        pb={3}
+        px={3}
+        fontSize={{ base: "28px", md: "30px" }}
+        fontFamily="Josefin Sans"
+        d="flex"
+        w="100%"
+        justifyContent="space-between"
+        alignItems="center"
+        color="#fff"
       >
         My Chats
         <GroupChatModal>
 
-        <Button
+          <Button
             d="flex"
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             rightIcon={<AddIcon />}
             color="#0d0d30"
-            >
+          >
             New Group Chat
           </Button>
-            </GroupChatModal>
+        </GroupChatModal>
       </Box>
       <Box
-       d="flex"
-       flexDir="column"
-       p={3}
-       bg="#F8F8F8"
-       w="100%"
-       h="100%"
-       borderRadius="lg"
-       overflowY="hidden"
-       background={"#1B2E50"}
+        d="flex"
+        flexDir="column"
+        p={3}
+        bg="#F8F8F8"
+        w="100%"
+        h="100%"
+        borderRadius="lg"
+        overflowY="hidden"
+        background={"#1B2E50"}
       >
-        {chats?(
+        {chats ? (
           <Stack overflowY={'scroll'}>
-              {chats.map((chat) => (
+            {chats.map((chat) => (
               <Box
+                display={"flex"}
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
                 bg={selectedChat === chat ? "#69A7FF" : "#ECF4FF"}
@@ -103,25 +104,35 @@ const MyChats = ({fetchAgain}) => {
                 borderRadius="lg"
                 key={chat._id}
               >
-                <Text>
+                <Avatar
+                  mt="7px"
+                  mr={1}
+                  size="sm"
+                  cursor="pointer"
+                  src={chat.users[1].pic}
+                />
+
+                <Box>
+                <Text display={"flex"}>
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
                 </Text>
                 {chat.latestMessage && (
-                  <Text fontSize="xs">
-                    <b>{chat.latestMessage.sender.name} : </b>
+                  <Text fontSize="xs" display={"flex"}>
+                    <b>{chat.latestMessage.sender.name} :</b>
                     {chat.latestMessage.content.length > 50
                       ? chat.latestMessage.content.substring(0, 51) + "..."
                       : chat.latestMessage.content}
                   </Text>
                 )}
                 </Box>
-              ))}
+              </Box>
+            ))}
 
           </Stack>
-        ):(
-          <ChatLoading/>
+        ) : (
+          <ChatLoading />
         )}
       </Box>
     </Box>
