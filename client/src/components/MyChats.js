@@ -53,16 +53,18 @@ const MyChats = ({fetchAgain}) => {
     w={{ base: "100%", md: "31%" }}
     borderRadius="lg"
     borderWidth="1px"
+    background={"#0d0d30"}
     >
       <Box 
        pb={3}
        px={3}
        fontSize={{ base: "28px", md: "30px" }}
-       fontFamily="Work sans"
+       fontFamily="Josefin Sans"
        d="flex"
        w="100%"
        justifyContent="space-between"
        alignItems="center"
+       color="#fff"
       >
         My Chats
         <GroupChatModal>
@@ -71,6 +73,7 @@ const MyChats = ({fetchAgain}) => {
             d="flex"
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             rightIcon={<AddIcon />}
+            color="#0d0d30"
             >
             New Group Chat
           </Button>
@@ -85,6 +88,7 @@ const MyChats = ({fetchAgain}) => {
        h="100%"
        borderRadius="lg"
        overflowY="hidden"
+       background={"#1B2E50"}
       >
         {chats?(
           <Stack overflowY={'scroll'}>
@@ -92,7 +96,7 @@ const MyChats = ({fetchAgain}) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
+                bg={selectedChat === chat ? "#69A7FF" : "#ECF4FF"}
                 color={selectedChat === chat ? "white" : "black"}
                 px={3}
                 py={2}

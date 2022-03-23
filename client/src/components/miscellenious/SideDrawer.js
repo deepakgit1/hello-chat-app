@@ -32,16 +32,16 @@ const SideDrawer = () => {
         history.push("/");
     }
     
-    const handleSearch = async () => {
+    const handleSearch = async (search) => {
         if (!search) {
             toast({
                 title: "Please Enter something in search",
                 status: "warning",
-                duration: 5000,
+                duration: 2000,
                 isClosable: true,
-                position: "top-left",
+                position: "top-right",
             });
-            return;
+            return "";
         }
 
         try {
@@ -108,6 +108,9 @@ const SideDrawer = () => {
                 w="100%"
                 p="5px 10px 5px 10px"
                 borderWidth="5px"
+                borderRadius={"md"}
+                borderColor="#ECF4FF"
+                background={"#69A7FF"}
             >
                 <Tooltip label="Search user to chat" hasArrow placement='bottom-end'>
                     <Button variant={"ghost"} onClick={onOpen}>
@@ -115,8 +118,8 @@ const SideDrawer = () => {
                         <Text d={{ base: "none", md: "flex" }} px="4" onClick={onOpen}>Search User here</Text>
                     </Button>
                 </Tooltip >
-                <Text fontSize="2xl" fontFamily="Work sans">
-                    HelloChat
+                <Text fontSize="2xl" fontFamily="Josefin Sans" fontWeight={'bold'}>
+                    Hello-Chat
                 </Text>
                 <div>
                     <Menu>
@@ -125,7 +128,7 @@ const SideDrawer = () => {
                                 count={notification.length}
                                 effect={Effect.SCALE}
                             />
-                            <BellIcon fontSize={"2xl"} m="1" />
+                            <BellIcon fontSize={"2xl"} m="1" mr={3} />
                         </MenuButton>
                         <MenuList pl={2}>
                             {!notification.length && "No New Messages"}
@@ -163,11 +166,11 @@ const SideDrawer = () => {
                             <Input
                                 placeholder="Search by name or email"
                                 mr={2}
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
+                                // value={search}
+                                onChange={(e) => handleSearch(e.target.value)} 
                             />
                             <Button
-                                onClick={handleSearch}
+                                onClick={(e) => handleSearch(e.target.value)}
                             >Go</Button>
                         </Box>
                         {

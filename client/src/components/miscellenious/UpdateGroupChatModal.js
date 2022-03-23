@@ -202,17 +202,16 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain,fetchMessages}) => {
                 <ModalContent>
                     <ModalHeader
                         fontSize="35px"
-                        fontFamily="Work sans"
+                        fontFamily="Josefin Sans"
                         d="flex"
                         justifyContent="center"
                     >{selectedChat.chatName}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Box w="100%" d="flex" flexWrap="wrap" pb={3}>
+                        <Box w="100%" d="flex" flexWrap="wrap" pb={3} >
                             {selectedChat.users.map(u => (
                                 <UserBadgeItem key={user._id} user={u}
                                     handleFunction={() => handleRemove(u)} />
-
                             ))}
                         </Box>
                         <FormControl d="flex">
@@ -248,6 +247,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain,fetchMessages}) => {
                                     key={user._id}
                                     user={user}
                                     handleFunction={() => handleAddUser(user)}
+        
                                 />
                             ))
                         )}

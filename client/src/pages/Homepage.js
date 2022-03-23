@@ -20,14 +20,14 @@ const Homepage = () => {
                 d="flex"
                 justifyContent="center"
                 p={3}
-                bg="white"
+                bg="#F0F6FE "
                 w="100%"
                 m="40px 0 15px 0"
                 borderRadius="lg"
                 borderWidth="1px"
             >
-                <Text fontSize="4xl" fontFamily="Work sans">
-                    QuickChat
+                <Text fontSize="4xl" fontFamily="Josefin Sans" fontWeight={"bold"}>
+                    Hello-Chat
                 </Text>
             </Box>
             <Box bg="white" w="100%" p={4} borderRadius="lg" color={"black"} borderWidth="1px">

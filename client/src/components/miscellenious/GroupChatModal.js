@@ -120,7 +120,7 @@ const GroupChatModal = ({ children }) => {
                     <ModalHeader
 
                         fontSize="35px"
-                        fontFamily="Work sans"
+                        fontFamily="Josefin Sans"
                         d="flex"
                         justifyContent="center"
                     >Create Group Chat </ModalHeader>
