@@ -107,8 +107,8 @@ const SideDrawer = () => {
             >
                 <Tooltip label="Search user to chat" hasArrow placement='bottom-end'>
                     <Button variant={"ghost"} onClick={onOpen}>
-                        <i className="fas fa-search"></i>
-                        <Text d={{ base: "none", md: "flex" }} px="4" onClick={onOpen}>Search User</Text>
+                        <i className="fas fa-search" onClick={onOpen}></i>
+                        <Text d={{ base: "none", md: "flex" }} px="4" onClick={onOpen}>Search User here</Text>
                     </Button>
                 </Tooltip >
                 <Text fontSize="2xl" fontFamily="Work sans">
