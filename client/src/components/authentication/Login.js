@@ -54,7 +54,6 @@ const Login = () => {
             });
             localStorage.setItem("userInfo", JSON.stringify(data));
             setLoading(false);
-            window.location.reload(); 
             history.push("/chats");
         } catch (error) {
             toast({
@@ -104,7 +103,7 @@ return (
             width="100%"
             style={{ marginTop: 15 }}
             onClick={submitHandler}
-        // isLoading={picLoading}
+        isLoading={loading}
         >
             Log in
         </Button>
