@@ -68,7 +68,7 @@ const Signup = () => {
         });
         localStorage.setItem("userInfo", JSON.stringify(data));
         setPicLoading(false);
-        // window.location.reload(); 
+        window.location.reload(); 
         history.push("/chats");
       } catch (error) {
         toast({
