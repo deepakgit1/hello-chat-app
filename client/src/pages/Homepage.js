@@ -8,11 +8,11 @@ const Homepage = () => {
     const history = useHistory();
 
     useEffect(() => {
-      const user = JSON.parse(localStorage.getItem("userInfo"));
-  
-      if (user) history.push("/chats");
+        const user = JSON.parse(localStorage.getItem("userInfo"));
+
+        if (user) history.push("/chats");
     }, [history]);
-  
+
 
     return (
         <Container maxW='2xl' centerContent>
@@ -38,10 +38,10 @@ const Homepage = () => {
                     </TabList>
                     <TabPanels>
                         <TabPanel>
-                           <Login/>
+                            <Login />
                         </TabPanel>
                         <TabPanel>
-                            <Signup/>
+                            <Signup />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>

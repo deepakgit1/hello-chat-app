@@ -1,4 +1,9 @@
-import { Box, Button, FormControl, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast } from '@chakra-ui/react'
+import {
+    Box, Button, FormControl, Input,
+    Modal, ModalBody, ModalCloseButton, ModalContent,
+    ModalFooter, ModalHeader, ModalOverlay,
+    useDisclosure, useToast
+} from '@chakra-ui/react'
 import axios from 'axios';
 import React, { useState } from 'react'
 import { ChatState } from '../../context/ChatProvider';
@@ -45,16 +50,16 @@ const GroupChatModal = ({ children }) => {
             });
         }
     }
-    const handleSubmit = async() => {
-        if(!groupChatName || !selectedUsers){
+    const handleSubmit = async () => {
+        if (!groupChatName || !selectedUsers) {
             toast({
                 title: "Please fill all the feilds",
                 status: "warning",
                 duration: 5000,
                 isClosable: true,
                 position: "top",
-              });
-              return;
+            });
+            return;
         }
         try {
             const config = {
@@ -62,21 +67,21 @@ const GroupChatModal = ({ children }) => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const {data} = await axios.post("/api/chat/group",{
-                name:groupChatName,
-                users: JSON.stringify(selectedUsers.map((u)=>u._id)),
-            },config
+            const { data } = await axios.post("/api/chat/group", {
+                name: groupChatName,
+                users: JSON.stringify(selectedUsers.map((u) => u._id)),
+            }, config
             );
             setChats([data, ...chats]);
             onClose();
             toast({
-              title: "New Group Chat Created!",
-              status: "success",
-              duration: 5000,
-              isClosable: true,
-              position: "bottom",
+                title: "New Group Chat Created!",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
             });
-            
+
         } catch (error) {
             toast({
                 title: "Failed to Create the Chat!",
@@ -85,9 +90,9 @@ const GroupChatModal = ({ children }) => {
                 duration: 5000,
                 isClosable: true,
                 position: "bottom",
-              });
+            });
         }
-     }
+    }
 
     const handleDelete = (delUser) => {
         setSelectedUsers(selectedUsers.filter(sel => sel._id !== delUser._id)
@@ -153,7 +158,7 @@ const GroupChatModal = ({ children }) => {
 
                     <ModalFooter>
                         <Button colorScheme='blue' onClick={handleSubmit}>
-                           Create Chat
+                            Create Chat
                         </Button>
                     </ModalFooter>
                 </ModalContent>

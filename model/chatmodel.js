@@ -28,7 +28,4 @@ const Chat = mongoose.model("Chat",chatModel);
 module.exports = Chat; 
 
 
-//chatname
-//isGroupChat
-//users
-//letestmessage
+

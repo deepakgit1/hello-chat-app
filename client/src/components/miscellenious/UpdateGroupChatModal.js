@@ -1,12 +1,17 @@
 import { ViewIcon } from '@chakra-ui/icons'
-import { Box, Button, FormControl, IconButton, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, useDisclosure, useToast } from '@chakra-ui/react'
+import {
+    Box, Button, FormControl, IconButton,
+    Input, Modal, ModalBody, ModalCloseButton,
+    ModalContent, ModalFooter, ModalHeader,
+    ModalOverlay, Spinner, useDisclosure, useToast
+} from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { ChatState } from '../../context/ChatProvider'
 import UserBadgeItem from '../UserAvatar/UserBadgeItem'
 import UserListItem from '../UserAvatar/UserListItem'
 
-const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain,fetchMessages}) => {
+const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [groupChatName, setGroupChatName] = useState();
     const [search, setSearch] = useState("");
@@ -103,9 +108,9 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain,fetchMessages}) => {
             );
 
             user1._id === user._id ?
-             setSelectedChat() : setSelectedChat(data);
-             setLoading(false);
-             fetchMessages();
+                setSelectedChat() : setSelectedChat(data);
+            setLoading(false);
+            fetchMessages();
             setFetchAgain(!fetchAgain);
         } catch (error) {
             console.log(error);
@@ -247,7 +252,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain,fetchMessages}) => {
                                     key={user._id}
                                     user={user}
                                     handleFunction={() => handleAddUser(user)}
-        
+
                                 />
                             ))
                         )}

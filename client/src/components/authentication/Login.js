@@ -11,12 +11,12 @@ const Login = () => {
     const [password, setPassword] = useState();
     const [loading, setLoading] = useState(false)
     const toast = useToast()
-    const history = useHistory(); 
+    const history = useHistory();
 
 
     const handleClick = () => setShow(!show)
-    
-    const submitHandler = async() => {
+
+    const submitHandler = async () => {
         setLoading(true);
         if (!email || !password) {
             toast({
@@ -70,57 +70,57 @@ const Login = () => {
     };
 
 
-return (
-    <VStack spacing={'5px'} color='black'>
+    return (
+        <VStack spacing={'5px'} color='black'>
 
-        <FormControl id="email" isRequired>
-            <FormLabel>Email Address</FormLabel>
-            <Input
-                type="email"
-                value={email}
-                placeholder="Enter Your Email Address"
-                onChange={(e) => setEmail(e.target.value)}
-            />
-        </FormControl>
-
-        <FormControl id="password" isRequired>
-            <FormLabel>Password</FormLabel>
-            <InputGroup size="md">
+            <FormControl id="email" isRequired>
+                <FormLabel>Email Address</FormLabel>
                 <Input
-                    type={show ? "text" : "password"}
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    type="email"
+                    value={email}
+                    placeholder="Enter Your Email Address"
+                    onChange={(e) => setEmail(e.target.value)}
                 />
-                <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleClick}>
-                        {show ? "Hide" : "Show"}
-                    </Button>
-                </InputRightElement>
-            </InputGroup>
-        </FormControl>
-        <Button
-            colorScheme="linkedin"
-            width="100%"
-            style={{ marginTop: 15 }}
-            onClick={submitHandler}
-        isLoading={loading}
-        >
-            Log in
-        </Button>
-        <Button
-            variant="solid"
-            colorScheme="facebook"
-            width="100%"
-            onClick={() => {
-                setEmail("guest@example.com");
-                setPassword("123456");
-            }}
-        >
-            Get Guest User Credentials
-        </Button>
-    </VStack>
-)
+            </FormControl>
+
+            <FormControl id="password" isRequired>
+                <FormLabel>Password</FormLabel>
+                <InputGroup size="md">
+                    <Input
+                        type={show ? "text" : "password"}
+                        placeholder="Enter Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <InputRightElement width="4.5rem">
+                        <Button h="1.75rem" size="sm" onClick={handleClick}>
+                            {show ? "Hide" : "Show"}
+                        </Button>
+                    </InputRightElement>
+                </InputGroup>
+            </FormControl>
+            <Button
+                colorScheme="linkedin"
+                width="100%"
+                style={{ marginTop: 15 }}
+                onClick={submitHandler}
+                isLoading={loading}
+            >
+                Log in
+            </Button>
+            <Button
+                variant="solid"
+                colorScheme="facebook"
+                width="100%"
+                onClick={() => {
+                    setEmail("guest@example.com");
+                    setPassword("123456");
+                }}
+            >
+                Get Guest User Credentials
+            </Button>
+        </VStack>
+    )
 }
 
 export default Login
