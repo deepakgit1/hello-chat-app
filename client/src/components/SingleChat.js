@@ -23,7 +23,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
     const [messages, setMessages] = useState([])
     const [loading, setLoading] = useState(false)
-    const [newMessage, setNewMessage] = useState()
+    const [newMessage, setNewMessage] = useState("")
     const [socketConnected, setSocketConnected] = useState(false)
     const [typing, setTyping] = useState(false)
     const [isTyping, setIsTyping] = useState(false)
@@ -65,11 +65,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         socket.on('connected', () => setSocketConnected(true))
         socket.on('typing', () => setIsTyping(true))
         socket.on('stop typing', () => setIsTyping(false))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
         fetchMessages()
         selectedChatCompare = selectedChat;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedChat]);
 
     // console.log(notification,"-----");
@@ -107,7 +109,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     config
                 );
 
-                console.log(data);
+                // console.log(data);
                 socket.emit("new message", data)
                 setMessages([...messages, data])
             } catch (error) {
@@ -166,12 +168,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         />
                         {!selectedChat.isGroupChat ? (
                             <>
-                                <p style={{ color: "#fff" }}>{getSender(user, selectedChat.users)}</p>
+                                <span style={{ color: "#fff" }}>{getSender(user, selectedChat.users)}</span>
                                 <ProfileModal user={getSenderFull(user, selectedChat.users)} />
                             </>
                         ) : (
                             <>
-                                <p style={{ color: "#fff" }}>{selectedChat.chatName.toUpperCase()}</p>
+                                <span style={{ color: "#fff" }}>{selectedChat.chatName.toUpperCase()}</span>
                                 <UpdateGroupChatModal
                                     fetchMessages={fetchMessages}
                                     fetchAgain={fetchAgain}

@@ -3,7 +3,7 @@ import ChatBox from "../components/ChatBox";
 import SideDrawer from "../components/miscellenious/SideDrawer";
 import MyChats from "../components/MyChats";
 import { ChatState } from "../context/ChatProvider"
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 
 const Chatpage = () => {

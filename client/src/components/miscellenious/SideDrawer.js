@@ -2,14 +2,14 @@ import {
     Avatar, Box, Button, Drawer, DrawerBody,
     DrawerContent, DrawerHeader, DrawerOverlay,
     Input, Menu, MenuButton, MenuDivider, MenuItem,
-    MenuList, Spinner, Text, toast, Tooltip,
+    MenuList, Spinner, Text, Tooltip,
     useDisclosure, useToast
 } from '@chakra-ui/react';
 import React, { useState } from 'react'
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { ChatState } from '../../context/ChatProvider';
 import ProfileModal from './ProfileModal';
-import { useHistory, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ChatLoading from '../ChatLoading';
 import UserListItem from '../UserAvatar/UserListItem';
@@ -18,7 +18,6 @@ import { getSender } from '../../config/ChatLogic';
 import NotificationBadge from "react-notification-badge";
 
 const SideDrawer = () => {
-    const [search, setSearch] = useState("")
     const [searchResult, setSearchResult] = useState([])
     const [loading, setLoading] = useState(false);
     const [loadingChat, setLoadingChat] = useState()
