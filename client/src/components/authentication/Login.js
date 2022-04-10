@@ -1,8 +1,8 @@
 import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack } from '@chakra-ui/react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useToast } from '@chakra-ui/react'
 import axios from "axios"
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -11,7 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false)
     const toast = useToast()
-    const history = useHistory();
+    const history = useNavigate();
 
 
     const handleClick = () => setShow(!show)
@@ -44,6 +44,11 @@ const Login = () => {
                 config
             );
 
+            // console.log(JSON.stringify(data));
+            localStorage.setItem("userInfo", JSON.stringify(data));
+            // window.location.reload()
+            setLoading(false);
+            history("/chats");
             toast({
                 title: "Login Successful",
                 status: "success",
@@ -51,10 +56,6 @@ const Login = () => {
                 isClosable: true,
                 position: "bottom",
             });
-            localStorage.setItem("userInfo", JSON.stringify(data));
-            // window.location.reload()
-            setLoading(false);
-            history.push("/chats");
         } catch (error) {
             toast({
                 title: "Error Occured!",
@@ -67,7 +68,6 @@ const Login = () => {
             setLoading(false);
         }
     };
-
 
     return (
         <VStack spacing={'5px'} color='black'>

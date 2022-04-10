@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { ChatState } from '../../context/ChatProvider';
 import ProfileModal from './ProfileModal';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ChatLoading from '../ChatLoading';
 import UserListItem from '../UserAvatar/UserListItem';
@@ -23,13 +23,14 @@ const SideDrawer = () => {
     const [loading, setLoading] = useState(false);
     const [loadingChat, setLoadingChat] = useState()
     const { user, setSelectedChat, chats, setChats, notification, setNotification } = ChatState()
-    const history = useHistory()
+
+    const history = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const toast = useToast()
 
     const logoutHandle = () => {
         localStorage.removeItem("userInfo");
-        history.push("/");
+        history("/");
     }
     
     const handleSearch = async (search) => {
